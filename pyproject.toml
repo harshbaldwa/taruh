@@ -5,6 +5,13 @@ description = "gpu octrees made simple"
 authors = ["Harshvardhan Baldwa <harshbaldwa@gmail.com>"]
 readme = "README.md"
 license = "MIT"
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Parallel Computing",
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
