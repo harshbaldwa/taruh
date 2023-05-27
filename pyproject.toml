@@ -3,7 +3,7 @@ name = "taruh"
 version = "0.1.0"
 description = "gpu trees made simple"
 authors = ["Harshvardhan Baldwa <harshbaldwa@gmail.com>"]
-readme = "README.md"
+readme = "README.rst"
 license = "MIT"
 classifiers = [
     "Development Status :: 1 - Planning",
