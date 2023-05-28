@@ -9,30 +9,22 @@ on:
 
 jobs:
   test:
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+        poetry-version: ["1.5.0"]
     runs-on: ubuntu-latest
     steps:
-      #----------------------------------------------
-      #       check-out repo and set-up python
-      #----------------------------------------------
-      - name: Check out repository
+      #------------------------------------#
+      #  Check out repo and set up Python  #
+      #------------------------------------#
+      - name: Check out the repository
         uses: actions/checkout@v3
-      - name: Set up python
-        id: setup-python
-        uses: actions/setup-python@v4
+      - name: "Setup Python, Poetry and Dependencies"
+        uses: packetcoders/action-setup-cache-python-poetry@main
         with:
-          python-version: '3.10'
-
-      #----------------------------------------------
-      #       Install Poetry image
-      #----------------------------------------------
-      - name: Run image
-        uses: abatilo/actions-poetry@v2
-      
-      #----------------------------------------------
-      #       Install dependencies
-      #----------------------------------------------
-      - name: Install dependencies
-        run: poetry install
+          python-version: ${{matrix.python-version}}
+          poetry-version: ${{matrix.poetry-version}}
 
       #----------------------------------------------
       #              Run test suite
