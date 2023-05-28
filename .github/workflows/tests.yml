@@ -23,11 +23,23 @@ jobs:
       - name: "Setup Python, Poetry and Dependencies"
         uses: packetcoders/action-setup-cache-python-poetry@main
         with:
-          python-version: ${{matrix.python-version}}
-          poetry-version: ${{matrix.poetry-version}}
+          python-version: ${{ matrix.python-version }}
+          poetry-version: ${{ matrix.poetry-version }}
 
       #----------------------------------------------
       #              Run test suite
       #----------------------------------------------
       - name: Run tests
-        run: poetry run pytest --cov=taruh
+        run: |
+          poetry run pytest --cov=taruh --cov-report=xml
+          pwd
+          ls -la
+
+      #----------------------------------------------
+      #              Upload coverage
+      #----------------------------------------------
+      - name: Upload coverage reports to Codecov
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -f "coverage.xml" -t ${{ secrets.CODECOV_TOKEN }}
